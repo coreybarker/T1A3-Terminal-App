@@ -6,7 +6,6 @@ job_items = { mopping: "Incomplete", sweeping: "Incomplete" }
 runsheet = RunSheet.new("Incomplete Jobs", job_items)
 
 clear
-puts
 puts Header
 puts Rainbow("Welcome to the virtual Job Run Sheet!").orange.center(Header_length)
 puts Header

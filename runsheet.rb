@@ -54,22 +54,7 @@ class RunSheet
   end
 end
 
-# def get_user
-#     print "Please log in, are you a " + Rainbow("User").green + " or " + Rainbow("Admin").green + "? "
-#     user = gets.strip
-#   # raise(InvalidNameError unless user == gets.strip)
-# end
-
-# begin
-#     foo = get_user.capitalize
-#     puts "Logged in as: #{foo}"
-#   # rescue InvalidNameError => e
-#   #     puts e.message
-#   #     retry
-# end
 
 # TTY::Prompt.new.mask("Enter password:")
 
-# puts
-# puts "Incomplete Jobs list:"
-# puts
+

@@ -22,10 +22,10 @@ while login_attempts < 3
   if get_login == ""
     login_attempts += 1
     if login_attempts == 3
-        clear
-        puts "Application ending, try again..."
+      clear
+      puts "Application ending, try again..."
     else
-        puts "Incorrect login, please try again: "
+      puts "Incorrect login, please try again: "
     end
   else
     clear

@@ -1,7 +1,7 @@
 require 'rainbow'
 # require 'tty-prompt'
-require_relative './joblist'
-require_relative './addjob'
+require_relative './job_list'
+require_relative './add_job'
 
 # Page styling
 HEADER = "--------------------------------------------------------------\n".freeze

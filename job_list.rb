@@ -1,5 +1,5 @@
 require 'rainbow'
-require_relative './jobitem'
+require_relative './job_item'
 
 class JobList
   def initialize

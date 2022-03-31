@@ -1,6 +1,6 @@
-require './jobitem'
-require './joblist'
-require './addjob'
+require './job_item'
+require './job_list'
+require './add_job'
 require './runsheet'
 
 describe JobItem do

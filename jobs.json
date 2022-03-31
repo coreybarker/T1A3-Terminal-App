@@ -1,0 +1,26 @@
+[
+  {
+    "name": "mopping",
+    "status": "incomplete"
+  },
+  {
+    "name": "sweeping",
+    "status": "incomplete"
+  },
+  {
+    "name": "raking",
+    "status": "staged"
+  },
+  {
+    "name": "mowing",
+    "status": "staged"
+  },
+  {
+    "name": "vacuuming",
+    "status": "complete"
+  },
+  {
+    "name": "dishes",
+    "status": "complete"
+  }
+]

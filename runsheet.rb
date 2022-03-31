@@ -4,8 +4,7 @@ require_relative './joblist'
 require_relative './addjob'
 
 # Page styling
-Header = "--------------------------------------------------------------"
-Header_length = Header.length
+HEADER = "--------------------------------------------------------------\n".freeze
 
 def clear
     puts "\e[2J\e[f"
@@ -36,21 +35,21 @@ class RunSheet
   end
 
   def welcome_incomplete
-    puts Header
-    puts Rainbow("You are viewing: #{@name}").red.center(Header_length)
-    puts Header
+    puts HEADER
+    puts Rainbow("You are viewing: #{@name}").red.center(HEADER.length)
+    puts HEADER
   end
 
   def welcome_staged
-    puts Header
-    puts Rainbow("You are viewing: #{@name}").orange.center(Header_length)
-    puts Header
+    puts HEADER
+    puts Rainbow("You are viewing: #{@name}").orange.center(HEADER.length)
+    puts HEADER
   end
 
   def welcome_complete
-    puts Header
-    puts Rainbow("You are viewing: #{@name}").green.center(Header_length)
-    puts Header
+    puts HEADER
+    puts Rainbow("You are viewing: #{@name}").green.center(HEADER.length)
+    puts HEADER
   end
 
   def logout

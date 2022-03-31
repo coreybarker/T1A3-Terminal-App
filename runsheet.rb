@@ -1,5 +1,5 @@
 require 'rainbow'
-require 'tty-prompt'
+# require 'tty-prompt'
 require_relative './joblist'
 require_relative './addjob'
 
@@ -35,10 +35,27 @@ class RunSheet
     return @add_job
   end
 
-  def welcome
+  def welcome_incomplete
+    puts Header
+    puts Rainbow("You are viewing: #{@name}").red.center(Header_length)
+    puts Header
+  end
+
+  def welcome_staged
     puts Header
     puts Rainbow("You are viewing: #{@name}").orange.center(Header_length)
     puts Header
+  end
+
+  def welcome_complete
+    puts Header
+    puts Rainbow("You are viewing: #{@name}").green.center(Header_length)
+    puts Header
+  end
+
+  def logout
+    puts
+    puts "To exit type 'Logout'"
   end
 
   def print_list
@@ -54,7 +71,4 @@ class RunSheet
   end
 end
 
-
 # TTY::Prompt.new.mask("Enter password:")
-
-

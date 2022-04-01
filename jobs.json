@@ -9,11 +9,11 @@
   },
   {
     "name": "raking",
-    "status": "staged"
+    "status": "complete"
   },
   {
     "name": "mowing",
-    "status": "staged"
+    "status": "incomplete"
   },
   {
     "name": "vacuuming",
@@ -22,5 +22,17 @@
   {
     "name": "dishes",
     "status": "complete"
+  },
+  {
+    "name": "running",
+    "status": "incomplete"
+  },
+  {
+    "name": "cleaning",
+    "status": "staged"
+  },
+  {
+    "name": "assignment",
+    "status": "staged"
   }
 ]

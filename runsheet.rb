@@ -1,28 +1,23 @@
 require 'rainbow'
 # require 'tty-prompt'
 require_relative './job_list'
-require_relative './add_job'
-
-# Page styling
-HEADER = "--------------------------------------------------------------\n".freeze
 
 def clear
     puts "\e[2J\e[f"
 end
 
 class RunSheet
-  attr_reader :name, :joblist
+  attr_reader :name # :job_list
 
   def initialize(name, job_items)
     @name = name
     @joblist = JobList.new
     populate_joblist(job_items)
-    @add_job = AddJob.new
   end
 
   def populate_joblist(job_items)
-    job_items.each do |name, status|
-      @joblist.add_job(name, status)
+    job_items.each do |name, _status|
+      @joblist.add_job(name)
     end
   end
 
@@ -36,25 +31,28 @@ class RunSheet
 
   def welcome_incomplete
     puts HEADER
-    puts Rainbow("You are viewing: #{@name}").red.center(HEADER.length)
+    puts Rainbow("You are viewing: Incomplete Jobs").red.center(HEADER.length)
     puts HEADER
   end
 
   def welcome_staged
     puts HEADER
-    puts Rainbow("You are viewing: #{@name}").orange.center(HEADER.length)
+    puts Rainbow("You are viewing: Staged Jobs").orange.center(HEADER.length)
     puts HEADER
   end
 
   def welcome_complete
     puts HEADER
-    puts Rainbow("You are viewing: #{@name}").green.center(HEADER.length)
+    puts Rainbow("You are viewing: Completed Jobs").green.center(HEADER.length)
     puts HEADER
   end
 
-  def logout
+  def welcome_add_job
+    puts HEADER
+    puts Rainbow("Adding new job to Incomplete Jobs List").blue.center(HEADER.length)
+    puts HEADER
     puts
-    puts "To exit type 'Logout'"
+    puts "Type in the new job name:"
   end
 
   def print_list

@@ -1,4 +1,3 @@
-require './job_item'
 require './job_list'
 require './add_job'
 require './runsheet'
@@ -26,25 +25,15 @@ describe JobList do
     name = "Sweeping"
     status = "Incomplete"
     list = JobList.new
-    list.add_job(name, status)
+    list.add_job(name)
     expect(list.get_status(name)).to eq(status)
   end
   it 'Should be able to add a job' do
     name = "Sweeping"
     status = "Incomplete"
     list = JobList.new
-    list.add_job(name, status)
+    list.add_job(name)
     expect(list.get_jobs.length).to be(1)
-  end
-end
-
-describe AddJob do
-  it 'Should be able to stage a job to be added' do
-    stagejob = AddJob.new
-    name = "Mopping"
-    status = "Complete"
-    stagejob.add_item(name, status)
-    expect(stagejob.get_items.length).to be(1)
   end
 end
 

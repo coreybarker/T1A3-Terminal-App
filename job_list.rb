@@ -1,35 +1,38 @@
 require 'rainbow'
-require_relative './job_item'
+require 'json'
+
+FILE_PATH = 'jobs.json'.freeze
 
 class JobList
+  # A class to load and manipulate the jobs file.
+  attr_reader :jobs
+
   def initialize
-    @job_items = []
+    @jobs = JSON.load_file(FILE_PATH, symbolize_names: true)
   end
 
-  def add_job(name, status)
-    job_item = JobItem.new(name, status)
-    @job_items << job_item
+  def add_job(name)
+    job_item = { name: name, status: "incomplete" }
+    @jobs << job_item
+  end
+
+  def update_job(name, status)
+    @jobs = @jobs.map { |job| job[:name] == name ? { name: job[:name], status: status } : job }
+  end
+
+  # Writes to json file
+  def save_jobs
+    File.write(FILE_PATH, JSON.pretty_generate(@jobs))
   end
 
   def get_status(name)
-    job = @job_items.find { |job_item| job_item.name == name }
-    return job.status
-  end
-
-  def get_jobs
-    return @job_items
+    job = @jobs.find { |job_item| job_item.name == name }
+    job.status
   end
 
   def display
     puts
-    @job_items.each { |job| puts job }
-    return nil
+    @jobs.each { |job| puts job }
+    nil
   end
 end
-
-# this is temporary test code
-# joblist = JobList.new
-# joblist.add_job("Sweeping", "Incomplete")
-# joblist.add_job("Mop", "Incomplete")
-
-# joblist.display

@@ -1,4 +1,4 @@
-# Terminal Application
+# Terminal Application - Virtual Job Organiser
 ---
 
 ## Link to Repository
@@ -24,5 +24,9 @@
 
 ---
 ## Help Documention
+### How to Install (Virtual Job Organiser)
 
+### Dependencies & Requirements
+
+### User Guide
 ---

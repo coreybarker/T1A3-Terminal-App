@@ -45,7 +45,7 @@ end
 # Begin terminal output... #
 
 clear
-print_header(Rainbow("Welcome to the virtual Job Run Sheet!").orange.center(HEADER.length), show_exit_info: false)
+print_header(Rainbow("Welcome to the Virtual Job Organiser!").orange.center(HEADER.length), show_exit_info: false)
 print "Type #{Rainbow('ANY').green} key and press 'Enter' to continue: "
 
 # While loop to enter application
@@ -59,7 +59,7 @@ while input_attempts < 3
       clear
       puts "The application has ended, try again..."
       puts HEADER
-      puts "Thanks for using #{Rainbow('Virtual Job Run Sheet').orange}\n"
+      puts "Thanks for using #{Rainbow('Virtual Job Organiser').orange}\n"
       puts HEADER
       exit
     else
@@ -196,5 +196,5 @@ end
 
 # Exit message
 puts HEADER
-puts "Thanks for using #{Rainbow('Virtual Job Run Sheet').orange}\n"
+puts "Thanks for using #{Rainbow('Virtual Job Organiser').orange}\n"
 puts HEADER

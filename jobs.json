@@ -5,7 +5,7 @@
   },
   {
     "name": "sweeping",
-    "status": "incomplete"
+    "status": "complete"
   },
   {
     "name": "raking",
@@ -24,7 +24,7 @@
     "status": "incomplete"
   },
   {
-    "name": "running",
+    "name": "planning",
     "status": "staged"
   },
   {

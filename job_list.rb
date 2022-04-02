@@ -22,6 +22,11 @@ class JobList
     @jobs = @jobs.map { |job| job[:name] == name ? { name: job[:name], status: status } : job }
   end
 
+  def remove_job(name)
+    job_item = { name: name, status: "complete" }
+    @jobs << job_item.delete
+  end
+
   # Writes user input from app memory to json file
   def save_jobs
     File.write(FILE_PATH, JSON.pretty_generate(@jobs))

@@ -48,7 +48,7 @@ clear
 print_header(Rainbow("Welcome to the virtual Job Run Sheet!").orange.center(HEADER.length), show_exit_info: false)
 print "Type #{Rainbow('ANY').green} key and press 'Enter' to continue: "
 
-# First loop to enter application
+# While loop to enter application
 input_attempts = 0
 while input_attempts < 3
   user_input = gets.chomp.capitalize
@@ -57,10 +57,13 @@ while input_attempts < 3
     input_attempts += 1
     if input_attempts == 3
       clear
-      puts "Application has ended, try again..."
+      puts "The application has ended, try again..."
+      puts HEADER
+      puts "Thanks for using #{Rainbow('Virtual Job Run Sheet').orange}\n"
+      puts HEADER
       exit
     else
-      puts "Incorrect input, please try again: "
+      print "Incorrect input, please try again: "
     end
   else
     clear
@@ -76,6 +79,7 @@ puts Rainbow("Staged     Job List").orange + "-- Type '2'".center(HEADER.length)
 puts Rainbow("Completed  Job List").green + "-- Type '3'".center(HEADER.length)
 puts Rainbow("Add New Job        ").blue + "-- Type '4'".center(HEADER.length)
 
+# Creates a new joblist instance
 jobs_list = JobList.new
 
 # Main application loop to choose job lists etc
@@ -150,11 +154,16 @@ loop do
 
     clear
     print_header("You are viewing: Completed Jobs")
-
     complete_jobs.each do |job|
       print_job(job)
     end
     puts "\nType job name to #{Rainbow('REMOVE').red} job\n"
+    job_name = gets.strip.downcase
+
+    jobs_list.remove_job("complete")
+    jobs_list.save_jobs
+    clear
+    puts "Might have deleted job"
 
   # Menu option 4
   when "4"

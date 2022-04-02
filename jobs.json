@@ -1,7 +1,7 @@
 [
   {
     "name": "mopping",
-    "status": "incomplete"
+    "status": "complete"
   },
   {
     "name": "sweeping",
@@ -13,26 +13,34 @@
   },
   {
     "name": "mowing",
-    "status": "incomplete"
+    "status": "complete"
   },
   {
     "name": "vacuuming",
-    "status": "complete"
+    "status": "staged"
   },
   {
     "name": "dishes",
-    "status": "complete"
-  },
-  {
-    "name": "running",
     "status": "incomplete"
   },
   {
-    "name": "cleaning",
+    "name": "running",
     "status": "staged"
+  },
+  {
+    "name": "cleaning",
+    "status": "incomplete"
   },
   {
     "name": "assignment",
     "status": "staged"
+  },
+  {
+    "name": "digging",
+    "status": "staged"
+  },
+  {
+    "name": "build plant box",
+    "status": "incomplete"
   }
 ]

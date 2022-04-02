@@ -1,9 +1,12 @@
 require 'rainbow'
-require_relative './runsheet'
 require_relative './job_list'
 
 HEADER = "--------------------------------------------------------------".freeze
 EXIT_INFO = "To EXIT application, type 'Exit'".freeze
+
+def clear
+    puts "\e[2J\e[f"
+end
 
 def print_job(job_info)
   puts "Name: #{job_info[:name]} | Status: #{job_info[:status]}\n"
@@ -29,6 +32,7 @@ def print_header(title, color: "green", show_exit_info: true)
   puts "#{EXIT_INFO}\n\n" if show_exit_info
 end
 
+# Method to clear terminal screen
 def clear
   puts "\e[2J\e[f"
 end
@@ -38,16 +42,13 @@ def filter_jobs_by_status(jobs, status)
   jobs.filter { |job| job[:status] == status }
 end
 
-# # always use together!
-# jobs.update_job("raking", "complete")
-# jobs.save_jobs
-
 # Begin terminal output... #
 
 clear
 print_header(Rainbow("Welcome to the virtual Job Run Sheet!").orange.center(HEADER.length), show_exit_info: false)
-print "Type #{Rainbow('ANY').green} key to continue: "
+print "Type #{Rainbow('ANY').green} key and press 'Enter' to continue: "
 
+# First loop to enter application
 input_attempts = 0
 while input_attempts < 3
   user_input = gets.chomp.capitalize
@@ -77,6 +78,7 @@ puts Rainbow("Add New Job        ").blue + "-- Type '4'".center(HEADER.length)
 
 jobs_list = JobList.new
 
+# Main application loop to choose job lists etc
 loop do
   list_choice = gets.strip.downcase
 
@@ -85,6 +87,7 @@ loop do
     clear
     break
 
+  # Menu option 1
   when "1"
     incomplete_jobs = filter_jobs_by_status(jobs_list.jobs, "incomplete")
 
@@ -95,7 +98,25 @@ loop do
       print_job(job)
     end
     puts "\nType job name to #{Rainbow('STAGE').orange} job\n"
+    job_name = gets.strip.downcase
 
+    case job_name
+    when job_name
+      jobs_list.update_job(job_name, "staged")
+      jobs_list.save_jobs
+      clear
+      print_header("You are viewing: Incomplete Jobs", color: "red")
+      puts "Job is now staged.."
+      puts "\nReturn to Incomplete jobs list -- Type '1'"
+      puts "View Staged jobs               -- Type '2'"
+      puts "View Complete jobs             -- Type '3'"
+      puts "Add new job                    -- Type '4'"
+    when ""
+      puts "Invalid input, try again.."
+      redo
+    end
+
+  # Menu option 2
   when "2"
     staged_jobs = filter_jobs_by_status(jobs_list.jobs, "staged")
 
@@ -107,9 +128,23 @@ loop do
     puts "\nType job name to #{Rainbow('COMPLETE').green} job\n"
     job_name = gets.strip.downcase
 
-    jobs_list.update_job(job_name, "complete")
-    jobs_list.save_jobs
+    case job_name
+    when job_name
+      jobs_list.update_job(job_name, "complete")
+      jobs_list.save_jobs
+      clear
+      print_header("You are viewing: Staged Jobs", color: "orange")
+      puts "Job is has been completed.."
+      puts "\nReturn to Incomplete jobs list -- Type '1'"
+      puts "View Staged jobs               -- Type '2'"
+      puts "View Complete jobs             -- Type '3'"
+      puts "Add new job                    -- Type '4'"
+    when ""
+      puts "Invalid input, try again.."
+      redo
+    end
 
+  # Menu option 3
   when "3"
     complete_jobs = filter_jobs_by_status(jobs_list.jobs, "complete")
 
@@ -121,18 +156,36 @@ loop do
     end
     puts "\nType job name to #{Rainbow('REMOVE').red} job\n"
 
+  # Menu option 4
   when "4"
     clear
     print_header("Adding new job to Incomplete Jobs List", color: "blue")
     puts "Input job name: "
     job_name = gets.strip.downcase
 
-    jobs_list.add_job(job_name)
-    jobs_list.save_jobs
-    # list_choice = "1"
+    case job_name
+    when job_name
+      jobs_list.add_job(job_name)
+      jobs_list.save_jobs
+      clear
+      print_header("Adding new job to Incomplete Jobs List", color: "blue")
+      puts "Job is now added.."
+      puts "\nReturn to Incomplete jobs list -- Type '1'"
+      puts "View Staged jobs               -- Type '2'"
+      puts "View Complete jobs             -- Type '3'"
+      puts "Add new job                    -- Type '4'"
+    when ""
+      puts "Invalid input, try again.."
+      redo
+    end
+
+  # If no input, error message
   else
     puts "Invalid input, try again.."
   end
 end
 
+# Exit message
+puts HEADER
 puts "Thanks for using #{Rainbow('Virtual Job Run Sheet').orange}\n"
+puts HEADER

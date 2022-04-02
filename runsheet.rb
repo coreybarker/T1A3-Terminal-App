@@ -2,10 +2,6 @@ require 'rainbow'
 # require 'tty-prompt'
 require_relative './job_list'
 
-def clear
-    puts "\e[2J\e[f"
-end
-
 class RunSheet
   attr_reader :name # :job_list
 

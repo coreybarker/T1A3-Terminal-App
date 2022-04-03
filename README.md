@@ -2,6 +2,7 @@
 ---
 
 ## Link to Repository
+https://github.com/coreybarker/T1A3-Terminal-App
 
 ---
 ## Code Styling

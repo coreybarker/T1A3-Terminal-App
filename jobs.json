@@ -1,13 +1,5 @@
 [
   {
-    "name": "mopping",
-    "status": "complete"
-  },
-  {
-    "name": "sweeping",
-    "status": "complete"
-  },
-  {
     "name": "raking",
     "status": "complete"
   },
@@ -17,19 +9,15 @@
   },
   {
     "name": "vacuuming",
-    "status": "staged"
+    "status": "complete"
   },
   {
     "name": "dishes",
-    "status": "incomplete"
+    "status": "staged"
   },
   {
     "name": "planning",
     "status": "staged"
-  },
-  {
-    "name": "cleaning",
-    "status": "incomplete"
   },
   {
     "name": "assignment",
@@ -41,6 +29,14 @@
   },
   {
     "name": "build plant box",
+    "status": "staged"
+  },
+  {
+    "name": "typing",
+    "status": "staged"
+  },
+  {
+    "name": "house keeping",
     "status": "incomplete"
   }
 ]

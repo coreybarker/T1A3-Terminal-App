@@ -75,7 +75,7 @@ end
 # Begin terminal output...
 
 clear
-print_header(Rainbow("Welcome to the Virtual Job Organiser!").orange.center(HEADER.length), show_exit_info: false)
+print_header("Welcome to the Virtual Job Organiser!", color: "orange", show_exit_info: false)
 print "Type #{Rainbow('ANY').green} key and press '#{Rainbow('Enter').white}' to continue: "
 
 # While loop to enter application
@@ -109,9 +109,7 @@ jobs_list = JobList.new(loaded_jobs, JOBS_FILE_PATH)
 loop do
   clear
   puts "Type '#{Rainbow('h').white}' to view HELP MENU"
-  puts HEADER
-  puts Rainbow("Choose a job list to view OR Add a new job!").blue.center(HEADER.length)
-  puts HEADER
+  print_header("Choose a job list to view OR Add a new job!", color: "blue", show_exit_info: true)
   puts "#{Rainbow('View All Jobs').pink}       -- Type and Submit '#{Rainbow('1').white}'"
   puts "#{Rainbow('Incomplete Job List').brown} -- Type and Submit '#{Rainbow('2').white}'"
   puts "#{Rainbow('Staged Job List').orange}     -- Type and Submit '#{Rainbow('3').white}'"
@@ -219,6 +217,4 @@ loop do
 end
 
 # Exit message
-puts HEADER
-puts "Thanks for using #{Rainbow('Virtual Job Organiser').orange}\n"
-puts HEADER
+print_header("Thanks for using Virtual Job Organiser", color: "orange", show_exit_info: false)

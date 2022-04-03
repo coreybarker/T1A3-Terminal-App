@@ -32,11 +32,11 @@
     "status": "staged"
   },
   {
-    "name": "typing",
-    "status": "staged"
+    "name": "house keeping",
+    "status": "incomplete"
   },
   {
-    "name": "house keeping",
+    "name": "new job",
     "status": "incomplete"
   }
 ]

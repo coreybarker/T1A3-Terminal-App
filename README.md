@@ -28,9 +28,9 @@
 
 ### Dependencies & Requirements
 - Ruby Version 2.3.0 or higher
-- Ruby Gems
+- Ruby Gems ('Rainbow' Version 3.1 or higher)
 - Ruby Bundler
-- Ruby Gem 'Rainbow' Version 3.1 or higher
+ 
 
 ### User Guide
 

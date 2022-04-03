@@ -1,6 +1,7 @@
 require 'rainbow'
 require_relative './job_list'
 
+# Page styling and headings
 HEADER = "--------------------------------------------------------------".freeze
 EXIT_INFO = "To EXIT application, type 'Exit'".freeze
 
@@ -20,7 +21,7 @@ def print_header_title(title, color)
     puts Rainbow(title).orange.center(HEADER.length)
   when "blue"
     puts Rainbow(title).blue.center(HEADER.length)
-  else
+  else # Green will be the default
     puts Rainbow(title).green.center(HEADER.length)
   end
 end
@@ -30,6 +31,23 @@ def print_header(title, color: "green", show_exit_info: true)
   print_header_title(title, color)
   puts "#{HEADER}\n"
   puts "#{EXIT_INFO}\n\n" if show_exit_info
+end
+
+# Method to view help instructions
+def print_helper
+  puts HEADER.to_s
+  puts Rainbow("HELP INSTRUCTIONS BELOW").pink.center(HEADER.length)
+  puts Rainbow("\n Welcome to the help menu").white.center(HEADER.length)
+  puts "\nTyping any key upon starting, enters you into the application."
+  puts "If no key is enter, after 3 attempts, the application will exit."
+  puts Rainbow("\nLIST OF COMMANDS BELOW").white
+  puts "\n'#{Rainbow('h').white}'  -- Takes you to the Helper page (You are viewing now)"
+  puts "'#{Rainbow('1').white}'  -- Takes you to the Incomplete Job List page"
+  puts "'#{Rainbow('2').white}'  -- Takes you to the Staged Job List page"
+  puts "'#{Rainbow('3').white}'  -- Takes you to the Complete Job List page"
+  puts "'#{Rainbow('4').white}'  -- Takes you to the Add New Job page"
+  puts "'#{Rainbow('5').white}'  -- Takes you to the Remove Job page"
+  puts "\n'#{Rainbow('Exit').white}' -- Exits you out of the application"
 end
 
 # Method to clear terminal screen
@@ -42,7 +60,7 @@ def filter_jobs_by_status(jobs, status)
   jobs.filter { |job| job[:status] == status }
 end
 
-# Begin terminal output... #
+# Begin terminal output...
 
 clear
 print_header(Rainbow("Welcome to the Virtual Job Organiser!").orange.center(HEADER.length), show_exit_info: false)
@@ -71,13 +89,15 @@ while input_attempts < 3
   end
 end
 
+puts "Type '#{Rainbow('h').white}' to view HELP MENU"
 puts HEADER
 puts Rainbow("Choose a job list to view OR Add a new job!").blue.center(HEADER.length)
 puts HEADER
-puts Rainbow("Incomplete Job List").red + "-- Type '1'".center(HEADER.length)
+puts Rainbow("Incomplete Job List").brown + "-- Type '1'".center(HEADER.length)
 puts Rainbow("Staged     Job List").orange + "-- Type '2'".center(HEADER.length)
 puts Rainbow("Completed  Job List").green + "-- Type '3'".center(HEADER.length)
 puts Rainbow("Add New Job        ").blue + "-- Type '4'".center(HEADER.length)
+puts Rainbow("Remove a Job       ").red + "-- Type '5'".center(HEADER.length)
 
 # Creates a new joblist instance
 jobs_list = JobList.new
@@ -87,16 +107,23 @@ loop do
   list_choice = gets.strip.downcase
 
   case list_choice
+
+  # Exit option
   when "exit"
     clear
     break
+
+  # Help option
+  when 'h'
+    clear
+    print_helper
 
   # Menu option 1
   when "1"
     incomplete_jobs = filter_jobs_by_status(jobs_list.jobs, "incomplete")
 
     clear
-    print_header("You are viewing: Incomplete Jobs", color: "red")
+    print_header("You are viewing: Incomplete Jobs", color: "brown")
 
     incomplete_jobs.each do |job|
       print_job(job)
@@ -109,12 +136,13 @@ loop do
       jobs_list.update_job(job_name, "staged")
       jobs_list.save_jobs
       clear
-      print_header("You are viewing: Incomplete Jobs", color: "red")
+      print_header("You are viewing: Incomplete Jobs", color: "brown")
       puts "Job is now staged.."
       puts "\nReturn to Incomplete jobs list -- Type '1'"
       puts "View Staged jobs               -- Type '2'"
       puts "View Complete jobs             -- Type '3'"
       puts "Add new job                    -- Type '4'"
+      puts "Remove a job                   -- Type '5'"
     when ""
       puts "Invalid input, try again.."
       redo
@@ -143,6 +171,7 @@ loop do
       puts "View Staged jobs               -- Type '2'"
       puts "View Complete jobs             -- Type '3'"
       puts "Add new job                    -- Type '4'"
+      puts "Remove a job                   -- Type '5'"
     when ""
       puts "Invalid input, try again.."
       redo
@@ -157,13 +186,11 @@ loop do
     complete_jobs.each do |job|
       print_job(job)
     end
-    puts "\nType job name to #{Rainbow('REMOVE').red} job\n"
-    job_name = gets.strip.downcase
-
-    jobs_list.remove_job("complete")
-    jobs_list.save_jobs
-    clear
-    puts "Might have deleted job"
+    puts "\nReturn to Incomplete jobs list -- Type '1'"
+    puts "View Staged jobs               -- Type '2'"
+    puts "View Complete jobs             -- Type '3'"
+    puts "Add new job                    -- Type '4'"
+    puts "Remove a job                   -- Type '5'"
 
   # Menu option 4
   when "4"
@@ -183,10 +210,21 @@ loop do
       puts "View Staged jobs               -- Type '2'"
       puts "View Complete jobs             -- Type '3'"
       puts "Add new job                    -- Type '4'"
+      puts "Remove a job                   -- Type '5'"
     when ""
       puts "Invalid input, try again.."
       redo
     end
+  when "5"
+    # remove_job = filter_jobs_by_status(jobs_list.jobs, "")
+
+    clear
+    print_header("You are viewing: Remove job from Job List", color: "red")
+    @jobs.each do |job|
+      print_job(job)
+    end
+    puts "Input job name: "
+  # job_name = gets.strip.downcase
 
   # If no input, error message
   else

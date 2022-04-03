@@ -27,8 +27,7 @@ https://github.com/coreybarker/T1A3-Terminal-App
 --- 
 ## Planning (Trello)
 - Trello Board link: https://trello.com/invite/b/inP4pBO3/456b04f59fdcf00779ff791045b45eb4/virtual-job-organiser-program
-  
-![Trelloboard](../docs/trello_board.png)  
+    
 ---
 ## Help Documention
 ### How to Install (Virtual Job Organiser)
